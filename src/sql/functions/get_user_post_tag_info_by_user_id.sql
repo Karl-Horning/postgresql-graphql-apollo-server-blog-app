@@ -1,4 +1,4 @@
--- Function: public.get_user_post_tag_info_by_id(user_id integer)
+-- Function: public.get_user_post_tag_info_by_user_id(user_id integer)
 
 -- Summary: Returns information about posts authored by a specific user along with the associated tags.
 
@@ -16,7 +16,7 @@
 
 -- Language: PL/pgSQL
 
-CREATE OR REPLACE FUNCTION public.get_user_post_tag_info_by_id(user_id integer)
+CREATE OR REPLACE FUNCTION public.get_user_post_tag_info_by_user_id(user_id integer)
  RETURNS TABLE(username character varying, email character varying, title character varying, tag_names character varying)
  LANGUAGE plpgsql
 AS $function$
@@ -28,7 +28,7 @@ BEGIN
         -- Check if the user exists
         PERFORM 1
         FROM users AS u
-        WHERE u.user_id = get_user_post_tag_info_by_id.user_id;
+        WHERE u.user_id = get_user_post_tag_info_by_user_id.user_id;
         IF NOT FOUND THEN
             RAISE EXCEPTION 'User with ID % does not exist', user_id;
         END IF;
@@ -49,7 +49,7 @@ BEGIN
         LEFT JOIN tags AS t ON
             t.tag_id = pt.tag_id
         WHERE
-            u.user_id = get_user_post_tag_info_by_id.user_id -- use function parameter directly
+            u.user_id = get_user_post_tag_info_by_user_id.user_id -- use function parameter directly
         GROUP BY
             u.username,
             u.email,
