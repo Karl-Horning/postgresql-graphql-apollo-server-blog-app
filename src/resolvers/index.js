@@ -4,6 +4,7 @@
  */
 
 const { User } = require("../models");
+const moment = require("moment");
 
 /**
  * GraphQL resolvers.
@@ -28,7 +29,15 @@ const resolvers = {
                 // Retrieve all users from the database
                 const users = await User.findAll();
                 // Convert Sequelize model instances to plain JavaScript objects
-                return users.map((user) => user.get({ plain: true }));
+                return users.map((user) => ({
+                    ...user.get({ plain: true }),
+                    createdAt: moment(user.createdAt).format(
+                        "YYYY-MM-DD HH:mm:ss"
+                    ), // Format createdAt timestamp
+                    updatedAt: moment(user.updatedAt).format(
+                        "YYYY-MM-DD HH:mm:ss"
+                    ), // Format updatedAt timestamp
+                }));
             } catch (error) {
                 console.error("Error fetching users:", error);
                 throw error;
