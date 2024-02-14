@@ -17,11 +17,12 @@ class User extends Model {}
 User.init(
     {
         // Unique identifier for each user
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
+            field: "user_id",
         },
         // Username of the user
         username: {
@@ -34,9 +35,10 @@ User.init(
             allowNull: false,
         },
         // Hashed password of the user
-        password_hash: {
+        passwordHash: {
             type: DataTypes.STRING,
             allowNull: false,
+            field: "password_hash",
         },
         // Timestamp for when the user was created
         createdAt: {
