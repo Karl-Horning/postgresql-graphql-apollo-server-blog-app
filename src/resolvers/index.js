@@ -3,7 +3,6 @@
  * @module resolvers
  */
 
-const { User } = require("../models");
 const moment = require("moment");
 
 /**
@@ -21,13 +20,17 @@ const resolvers = {
         /**
          * Resolver function for the "users" query.
          * Retrieves all users from the database.
+         * @async
+         * @param {Object} _ - The parent object (not used).
+         * @param {Object} __ - The arguments object (not used).
+         * @param {Object} context - The context object containing models.
          * @returns {Array} An array of user objects.
          * @throws {Error} If there is an error fetching users.
          */
-        users: async () => {
+        users: async (_, __, { models }) => {
             try {
                 // Retrieve all users from the database
-                const users = await User.findAll();
+                const users = await models.User.findAll();
                 // Convert Sequelize model instances to plain JavaScript objects
                 return users.map((user) => ({
                     ...user.get({ plain: true }),

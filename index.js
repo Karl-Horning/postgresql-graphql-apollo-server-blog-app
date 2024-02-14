@@ -2,7 +2,8 @@
 const dotenv = require("dotenv");
 const chalk = require("chalk");
 const { ApolloServer } = require("apollo-server");
-const schema = require('./src/schemas');
+const schema = require("./src/schemas");
+const { Comment, Post, PostTag, Tag, User } = require("./src/models");
 
 // Destructuring to get specific chalk colors
 const { red, green, yellow } = chalk;
@@ -30,7 +31,15 @@ const port = parseInt(process.env.PORT, 10) || 4000;
  * @type {ApolloServer}
  */
 const server = new ApolloServer({
-    schema,
+    schema, // Your resolver functions
+    context: () => ({
+        models: {
+            User,
+            Post,
+            Comment,
+            Tag,
+        },
+    }),
     csrfPrevention: true,
     cache: "bounded",
     introspection: true,
