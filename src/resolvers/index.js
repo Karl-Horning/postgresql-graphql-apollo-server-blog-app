@@ -3,7 +3,7 @@
  * @module resolvers
  */
 
-const moment = require("moment");
+const { formatTimestamp } = require("../helpers/time.helper");
 
 /**
  * GraphQL resolvers.
@@ -35,13 +35,9 @@ const resolvers = {
                 return users.map((user) => ({
                     ...user.get({ plain: true }),
                     // Format createdAt timestamp
-                    createdAt: moment(user.createdAt).format(
-                        "YYYY-MM-DD HH:mm:ss"
-                    ),
+                    createdAt: formatTimestamp(user.createdAt),
                     // Format updatedAt timestamp
-                    updatedAt: moment(user.updatedAt).format(
-                        "YYYY-MM-DD HH:mm:ss"
-                    ),
+                    updatedAt: formatTimestamp(user.updatedAt),
                 }));
             } catch (error) {
                 console.error("Error fetching users:", error);
