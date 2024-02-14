@@ -34,12 +34,14 @@ const resolvers = {
                 // Convert Sequelize model instances to plain JavaScript objects
                 return users.map((user) => ({
                     ...user.get({ plain: true }),
+                    // Format createdAt timestamp
                     createdAt: moment(user.createdAt).format(
                         "YYYY-MM-DD HH:mm:ss"
-                    ), // Format createdAt timestamp
+                    ),
+                    // Format updatedAt timestamp
                     updatedAt: moment(user.updatedAt).format(
                         "YYYY-MM-DD HH:mm:ss"
-                    ), // Format updatedAt timestamp
+                    ),
                 }));
             } catch (error) {
                 console.error("Error fetching users:", error);
