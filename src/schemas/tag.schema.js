@@ -30,6 +30,16 @@ const typeDefs = gql`
         Get all tags in the system.
         """
         tags: [Tag!]!
+
+        """
+        Get one tag in the system.
+        """
+        tag(
+            """
+            The unique identifier of the tag to retrieve.
+            """
+            tagId: Int!
+        ): Tag!
     }
 `;
 

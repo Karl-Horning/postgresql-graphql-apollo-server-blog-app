@@ -32,6 +32,31 @@ const resolvers = {
                 throw error;
             }
         },
+
+        /**
+         * Resolver function for the "tag" query.
+         * Retrieves a specific tag from the database.
+         * @async
+         * @param {Object} _ - The parent object (not used).
+         * @param {Object} args - The arguments object containing the tag ID.
+         * @param {number} args.tagId - The ID of the tag to retrieve.
+         * @param {Object} context - The context object containing models.
+         * @returns {Object} The tag object.
+         * @throws {Error} If there is an error fetching the tag.
+         */
+        tag: async (_, args, { models }) => {
+            try {
+                // Retrieve a tag from the database
+                const tag = await models.Tag.findByPk(args.tagId);
+                return {
+                    // Convert Sequelize model instance to plain JavaScript object
+                    ...tag.get({ plain: true }),
+                };
+            } catch (error) {
+                console.error("Error fetching tag:", error);
+                throw error;
+            }
+        },
     },
 };
 
