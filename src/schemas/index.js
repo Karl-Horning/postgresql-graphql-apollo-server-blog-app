@@ -6,7 +6,7 @@
 const { makeExecutableSchema } = require("@graphql-tools/schema");
 
 // Import GraphQL schema definitions for queries
-const queries = require("./queries.schema");
+const queries = require("./user.schema");
 // Import resolvers to resolve queries
 const resolvers = require("../resolvers");
 
