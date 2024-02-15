@@ -38,6 +38,11 @@ const typeDefs = gql`
         The date and time when the post was last updated.
         """
         updatedAt: String!
+
+        """
+        The user that published a post.
+        """
+        author(authorId: Int): User!
     }
 
     type Query {

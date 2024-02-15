@@ -68,6 +68,37 @@ const resolvers = {
             }
         },
     },
+
+    Post: {
+        /**
+         * Resolver function for the "author" query for "post".
+         * Retrieves a specific user from the database.
+         * @async
+         * @param {Object} parent - The parent object containing the author's ID.
+         * @param {Object} _ - The arguments object (not used).
+         * @param {number} args.userId - The ID of the user to retrieve.
+         * @param {Object} context - The context object containing models.
+         * @returns {Object} The user object.
+         * @throws {Error} If there is an error fetching the user.
+         */
+        author: async (parent, _, { models }) => {
+            try {
+                // Retrieve a user from the database
+                const user = await models.User.findByPk(parent.authorId);
+                return {
+                    // Convert Sequelize model instance to plain JavaScript object
+                    ...user.get({ plain: true }),
+                    // Format createdAt timestamp
+                    createdAt: formatTimestamp(user.createdAt),
+                    // Format updatedAt timestamp
+                    updatedAt: formatTimestamp(user.updatedAt),
+                };
+            } catch (error) {
+                console.error("Error fetching user:", error);
+                throw error;
+            }
+        }
+    }
 };
 
 module.exports = resolvers;
