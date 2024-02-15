@@ -44,6 +44,9 @@ const typeDefs = gql`
         """
         updatedAt: String!
 
+        """
+        Get all posts that a user has published.
+        """
         posts(postId: Int): [Post]
     }
 
