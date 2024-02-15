@@ -75,17 +75,17 @@ const resolvers = {
         },
     },
 
-    /**
-     * Resolver function for the "posts" child query for "user".
-     * Retrieves all posts from the database.
-     * @async
-     * @param {Object} parent - The parent object containing the author's ID.
-     * @param {Object} _ - The arguments object (not used).
-     * @param {Object} context - The context object containing models.
-     * @returns {Array} An array of post objects.
-     * @throws {Error} If there is an error fetching posts.
-     */
     User: {
+        /**
+         * Resolver function for the "posts" child query for "user".
+         * Retrieves all posts from the database.
+         * @async
+         * @param {Object} parent - The parent object containing the author's ID.
+         * @param {Object} _ - The arguments object (not used).
+         * @param {Object} context - The context object containing models.
+         * @returns {Array} An array of post objects.
+         * @throws {Error} If there is an error fetching posts.
+         */
         posts: async (parent, _, { models }) => {
             try {
                 // Retrieve all posts from the database
