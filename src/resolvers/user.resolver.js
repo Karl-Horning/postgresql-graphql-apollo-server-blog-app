@@ -74,6 +74,40 @@ const resolvers = {
             }
         },
     },
+
+    /**
+     * Resolver function for the "posts" child query for "user".
+     * Retrieves all posts from the database.
+     * @async
+     * @param {Object} parent - The parent object containing the author's ID.
+     * @param {Object} _ - The arguments object (not used).
+     * @param {Object} context - The context object containing models.
+     * @returns {Array} An array of post objects.
+     * @throws {Error} If there is an error fetching posts.
+     */
+    User: {
+        posts: async (parent, _, { models }) => {
+            try {
+                // Retrieve all posts from the database
+                const posts = await models.Post.findAll({
+                    where: {
+                        authorId: parent.userId,
+                    },
+                });
+                // Convert Sequelize model instances to plain JavaScript objects
+                return posts.map((post) => ({
+                    ...post.get({ plain: true }),
+                    // Format createdAt timestamp
+                    createdAt: formatTimestamp(post.createdAt),
+                    // Format updatedAt timestamp
+                    updatedAt: formatTimestamp(post.updatedAt),
+                }));
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+                throw error;
+            }
+        },
+    },
 };
 
 module.exports = resolvers;

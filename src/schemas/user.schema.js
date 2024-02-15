@@ -43,6 +43,8 @@ const typeDefs = gql`
         The date and time when the user was last updated.
         """
         updatedAt: String!
+
+        posts(postId: Int): [Post]
     }
 
     type Query {
