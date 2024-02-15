@@ -4,6 +4,7 @@
  */
 
 // Import resolvers
+const postResolver = require("./post.resolver");
 const tagResolver = require("./tag.resolver");
 const userResolver = require("./user.resolver");
 
@@ -11,4 +12,4 @@ const userResolver = require("./user.resolver");
  * Array containing GraphQL resolvers.
  * @type {Array}
  */
-module.exports = [tagResolver, userResolver];
+module.exports = [postResolver, tagResolver, userResolver];

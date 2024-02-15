@@ -41,6 +41,7 @@ Post.init(
         authorId: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            field: "author_id",
             references: {
                 model: "User",
                 key: "user_id",
@@ -66,6 +67,6 @@ Post.init(
 );
 
 // Define the association between Post and User models
-Post.belongsTo(User, { foreignKey: "authorId" });
+Post.belongsTo(User, { foreignKey: "author_id" });
 
 module.exports = Post;
