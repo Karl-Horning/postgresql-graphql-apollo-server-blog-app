@@ -47,7 +47,7 @@ const typeDefs = gql`
         """
         Get all posts that a user has published.
         """
-        posts(postId: Int!): [Post]
+        posts(postId: Int): [Post]
     }
 
     type Query {
