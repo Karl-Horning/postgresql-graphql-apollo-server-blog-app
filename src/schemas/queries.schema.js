@@ -55,6 +55,11 @@ const typeDefs = gql`
         Get all users in the system.
         """
         users: [User!]!
+
+        """
+        Get one user in the system.
+        """
+        user(userId: Int!): User!
     }
 `;
 
