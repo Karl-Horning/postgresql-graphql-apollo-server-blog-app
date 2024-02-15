@@ -59,7 +59,12 @@ const typeDefs = gql`
         """
         Get one user in the system.
         """
-        user(userId: Int!): User!
+        user(
+            """
+            The unique identifier of the user to retrieve.
+            """
+            userId: Int!
+        ): User!
     }
 `;
 
