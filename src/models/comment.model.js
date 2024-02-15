@@ -22,14 +22,15 @@ class Comment extends Model {}
 Comment.init(
     {
         // Unique identifier for each comment
-        comment_id: {
+        commentId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
+            field: "comment_id",
         },
         // ID of the post to which the comment belongs
-        post_id: {
+        postId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -38,7 +39,7 @@ Comment.init(
             },
         },
         // ID of the user who authored the comment
-        author_id: {
+        authorId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -50,6 +51,7 @@ Comment.init(
         content: {
             type: DataTypes.TEXT,
             allowNull: false,
+            comment: "Content of the comment",
         },
         // Timestamp for when the comment was created
         createdAt: {
@@ -71,9 +73,9 @@ Comment.init(
 );
 
 // Define the association between Comment and Post models
-Comment.belongsTo(Post, { foreignKey: "post_id", as: "post" });
+Comment.belongsTo(Post, { foreignKey: "postId", as: "post" });
 
 // Define the association between Comment and User models
-Comment.belongsTo(User, { foreignKey: "author_id", as: "author" });
+Comment.belongsTo(User, { foreignKey: "authorId", as: "author" });
 
 module.exports = Comment;

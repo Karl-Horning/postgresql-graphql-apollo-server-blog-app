@@ -21,16 +21,18 @@ class PostTag extends Model {}
 // Initialize the PostTag model with its attributes and options
 PostTag.init({
     // Unique identifier for each post
-    post_id: {
+    postId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
+        field: "post_id",
     },
     // Unique identifier for each tag
-    tag_id: {
+    tagId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
+        field: "tag_id",
     },
 },
 {
@@ -41,9 +43,9 @@ PostTag.init({
 });
 
 // Define the association between PostTag and Post models
-PostTag.belongsTo(Post, { foreignKey: "post_id" });
+PostTag.belongsTo(Post, { foreignKey: "postId" });
 
 // Define the association between PostTag and Tag models
-PostTag.belongsTo(Tag, { foreignKey: "tag_id" });
+PostTag.belongsTo(Tag, { foreignKey: "tagId" });
 
 module.exports = PostTag;

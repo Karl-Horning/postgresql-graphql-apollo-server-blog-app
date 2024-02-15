@@ -20,11 +20,12 @@ class Post extends Model {}
 Post.init(
     {
         // Unique identifier for each post
-        post_id: {
+        postId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
+            field: "post_id",
         },
         // Title of the post
         title: {
@@ -37,7 +38,7 @@ Post.init(
             allowNull: false,
         },
         // ID of the user who authored the post
-        author_id: {
+        authorId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -65,6 +66,6 @@ Post.init(
 );
 
 // Define the association between Post and User models
-Post.belongsTo(User, { foreignKey: "author_id" });
+Post.belongsTo(User, { foreignKey: "authorId" });
 
 module.exports = Post;

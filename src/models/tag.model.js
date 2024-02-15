@@ -18,16 +18,18 @@ class Tag extends Model {}
 Tag.init(
     {
         // Unique identifier for each tag
-        tag_id: {
+        tagId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
+            field: "tag_id",
         },
         // Name of the tag
-        tag_name: {
+        tagName: {
             type: DataTypes.STRING,
             allowNull: false,
+            field: "tag_name",
         },
     },
     {
