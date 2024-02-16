@@ -112,14 +112,9 @@ const resolvers = {
             try {
                 const sqlQuery = `
                 SELECT
-                    t.tag_id AS "tagId",
-                    t.tag_name AS "tagName"
+                    *
                 FROM
-                    posts_tags AS pt
-                LEFT JOIN tags AS t ON
-                    pt.tag_id = t.tag_id
-                WHERE
-                    pt.post_id = :postId;
+                    get_tags_for_post(:postId);
                 `;
 
                 const result = await sequelize.query(sqlQuery, {
