@@ -76,7 +76,6 @@ const resolvers = {
          * @async
          * @param {Object} parent - The parent object containing the author's ID.
          * @param {Object} _ - The arguments object (not used).
-         * @param {number} args.userId - The ID of the user to retrieve.
          * @param {Object} context - The context object containing models.
          * @returns {Object} The user object.
          * @throws {Error} If there is an error fetching the user.
