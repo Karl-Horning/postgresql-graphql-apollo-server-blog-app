@@ -16,7 +16,7 @@ const resolvers = {
          * @param {Object} _ - The parent object (not used).
          * @param {Object} __ - The arguments object (not used).
          * @param {Object} context - The context object containing models.
-         * @returns {Array} An array of user objects.
+         * @returns {Array} An array of tag objects.
          * @throws {Error} If there is an error fetching tags.
          */
         tags: async (_, __, { models }) => {
