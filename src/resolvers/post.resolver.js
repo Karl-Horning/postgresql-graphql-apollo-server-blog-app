@@ -111,10 +111,10 @@ const resolvers = {
         tags: async (parent) => {
             try {
                 const sqlQuery = `
-                SELECT
-                    *
-                FROM
-                    get_tags_for_post(:postId);
+                    SELECT
+                        *
+                    FROM
+                        get_tags_for_post(:postId);
                 `;
 
                 const result = await sequelize.query(sqlQuery, {
