@@ -34,10 +34,11 @@ const server = new ApolloServer({
     schema, // Your resolver functions
     context: () => ({
         models: {
-            User,
-            Post,
             Comment,
+            Post,
+            PostTag,
             Tag,
+            User,
         },
     }),
     csrfPrevention: true,
