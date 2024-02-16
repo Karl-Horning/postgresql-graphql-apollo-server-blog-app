@@ -3,6 +3,8 @@
  * @module resolvers
  */
 
+const { QueryTypes } = require("sequelize");
+const { sequelize } = require("../config/database");
 const { formatTimestamp } = require("../helpers/time.helper");
 
 /**
@@ -96,8 +98,42 @@ const resolvers = {
                 console.error("Error fetching user:", error);
                 throw error;
             }
-        }
-    }
+        },
+
+        /**
+         * Resolver function for the "tags" query.
+         * Retrieves all tags from the database.
+         * @async
+         * @param {Object} parent - The parent object containing the post's ID.
+         * @returns {Array} An array of tag objects.
+         * @throws {Error} If there is an error fetching tags.
+         */
+        tags: async (parent) => {
+            try {
+                const sqlQuery = `
+                SELECT
+                    t.tag_id AS "tagId",
+                    t.tag_name AS "tagName"
+                FROM
+                    posts_tags AS pt
+                LEFT JOIN tags AS t ON
+                    pt.tag_id = t.tag_id
+                WHERE
+                    pt.post_id = :postId;
+                `;
+
+                const result = await sequelize.query(sqlQuery, {
+                    replacements: { postId: parent.postId },
+                    type: QueryTypes.SELECT,
+                });
+
+                return result;
+            } catch (error) {
+                console.error("Error fetching tags:", error);
+                throw error;
+            }
+        },
+    },
 };
 
 module.exports = resolvers;

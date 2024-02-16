@@ -43,6 +43,11 @@ const typeDefs = gql`
         The user that published a post.
         """
         author(authorId: Int): User!
+
+        """
+        The tags that belong to a published post
+        """
+        tags(postId: Int): [Tag!]
     }
 
     type Query {
