@@ -4,10 +4,11 @@ This project is a blog application built using PostgreSQL, GraphQL, and Apollo S
 
 ## TODOs
 
-- [_] Add data loaders
-- [_] Add create endpoints
-- [_] Add update endpoints
-- [_] Create front end
+- [ ] Add data loaders
+- [ ] Add create endpoints
+- [ ] Add update endpoints
+- [ ] Add unit tests
+- [ ] Create front end
 
 ## Setting Up Development Environment
 
