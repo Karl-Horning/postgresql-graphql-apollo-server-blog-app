@@ -2,6 +2,13 @@
 
 This project is a blog application built using PostgreSQL, GraphQL, and Apollo Server.
 
+## TODOs
+
+- [_] Add data loaders
+- [_] Add create endpoints
+- [_] Add update endpoints
+- [_] Create front end
+
 ## Setting Up Development Environment
 
 To set up your development environment, follow these steps:
