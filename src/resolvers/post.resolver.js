@@ -128,6 +128,38 @@ const resolvers = {
                 throw error;
             }
         },
+
+        /**
+         * Resolver function for the "comments" child query for "user".
+         * Retrieves all comments from the database.
+         * @async
+         * @param {Object} parent - The parent object containing the post's ID.
+         * @param {Object} _ - The arguments object (not used).
+         * @param {Object} context - The context object containing models.
+         * @returns {Array} An array of comment objects.
+         * @throws {Error} If there is an error fetching comments.
+         */
+        comments: async (parent, _, { models }) => {
+            try {
+                // Retrieve all comments from the database
+                const comments = await models.Comment.findAll({
+                    where: {
+                        postId: parent.postId,
+                    },
+                });
+                // Convert Sequelize model instances to plain JavaScript objects
+                return comments.map((comment) => ({
+                    ...comment.get({ plain: true }),
+                    // Format createdAt timestamp
+                    createdAt: formatTimestamp(comment.createdAt),
+                    // Format updatedAt timestamp
+                    updatedAt: formatTimestamp(comment.updatedAt),
+                }));
+            } catch (error) {
+                console.error("Error fetching comments:", error);
+                throw error;
+            }
+        },
     },
 };
 

@@ -48,6 +48,11 @@ const typeDefs = gql`
         The tags that belong to a published post
         """
         tags(postId: Int): [Tag!]
+
+        """
+        The comments that belong to a published post
+        """
+        comments(postId: Int): [Comment!]
     }
 
     type Query {

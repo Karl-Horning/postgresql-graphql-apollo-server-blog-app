@@ -37,6 +37,7 @@ Comment.init(
                 model: "Post",
                 key: "post_id",
             },
+            field: "post_id",
         },
         // ID of the user who authored the comment
         authorId: {
@@ -46,6 +47,7 @@ Comment.init(
                 model: "User",
                 key: "user_id",
             },
+            field: "author_id",
         },
         // Content of the comment
         content: {
