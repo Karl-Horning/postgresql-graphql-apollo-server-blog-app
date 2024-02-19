@@ -75,6 +75,44 @@ const resolvers = {
         },
     },
 
+    Mutation: {
+        /**
+         * Resolver function for the "addUser" mutation.
+         * Adds a new user to the system.
+         * @async
+         * @param {Object} _ - The parent object (not used).
+         * @param {Object} args - The arguments object containing user data.
+         * @param {string} args.username - The username of the new user.
+         * @param {string} args.email - The email address of the new user.
+         * @param {string} args.passwordHash - The hashed password of the new user.
+         * @param {Object} context - The context object containing models.
+         * @returns {Object} The newly added user object.
+         * @throws {Error} If there is an error adding the user.
+         */
+        addUser: async (_, args, { models }) => {
+            try {
+                // Add a user to the database
+                const newUser = await models.User.create({
+                    username: args.username,
+                    email: args.email,
+                    passwordHash: args.passwordHash,
+                });
+
+                return {
+                    // Convert Sequelize model instance to plain JavaScript object
+                    ...newUser.get({ plain: true }),
+                    // Format createdAt timestamp
+                    createdAt: formatTimestamp(newUser.createdAt),
+                    // Format updatedAt timestamp
+                    updatedAt: formatTimestamp(newUser.updatedAt),
+                };
+            } catch (error) {
+                console.error("Error adding user:", error);
+                throw error;
+            }
+        },
+    },
+
     User: {
         /**
          * Resolver function for the "posts" child query for "user".

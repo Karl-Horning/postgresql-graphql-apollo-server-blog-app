@@ -71,6 +71,28 @@ const typeDefs = gql`
             userId: Int!
         ): User!
     }
+
+    type Mutation {
+        """
+        Add a new user to the system.
+        """
+        addUser(
+            """
+            The username of the new user.
+            """
+            username: String!
+
+            """
+            The email address of the new user.
+            """
+            email: String!
+
+            """
+            The hashed password of the new user.
+            """
+            passwordHash: String!
+        ): User!
+    }
 `;
 
 module.exports = typeDefs;
